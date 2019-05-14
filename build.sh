@@ -1,11 +1,29 @@
+#!/usr/bin/env bash
+
+set -ex
 
 root_dir=$(pwd)
+
+cd_root() {
+  cd ${root_dir}
+}
 
 # Update submodules
 git submodule update --init --recursive
 
-# Generate bindings
-cd ext/godot-cpp
-scons platform=osx generate_bindings=yes
+# Check bindgen
+if [ ! -e ./lib/bindgen/clang/bindgen ]; then
+  cd ./lib/bindgen/clang/
+  make
+  cd_root
+fi
 
-cd $(root_dir)
+# Generate bindings
+if [ ! -e ./ext/godot-cpp/bin/libgodot-cpp.osx.debug.64.a ]; then
+  cd ext/godot-cpp
+  scons platform=osx generate_bindings=yes
+fi
+
+./lib/bindgen/clang/bindgen ext/golang.yml
+
+cd_root

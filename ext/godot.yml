@@ -1,0 +1,18 @@
+module: LibGodot
+generators:
+  crystal:
+    output: src/ext/godot_binding.cr
+  cpp:
+    output: ext/godot_binding.cpp
+    preamble: |-
+      #define protected public
+    build: make
+
+parser:
+  files:
+    - "Array.hpp"
+  includes:
+    - "%/godot-cpp/include/core"
+    - "%/godot-cpp/include/gen"
+
+library: "%/ext/godot-cpp/bin/libgodot-cpp.osx.debug.64.a"
