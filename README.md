@@ -1,7 +1,7 @@
 # godot-crystal
 
 The goal of this project is to provide Crystal language support as a scripting
-module for the (Godot|http://godotengine.org) game engine.
+module for the [Godot](http://godotengine.org) game engine.
 
 ## Installation
 
