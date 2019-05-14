@@ -8,11 +8,69 @@ generators:
       #define protected public
     build: make
 
+processors:
+  # Graph-refining processors:
+  - inheritance
+  - default_constructor # Create default constructors where possible
+  - copy_structs # Copy structures as marked
+  - macros # Support for macro mapping
+  - functions # Support C-style functions
+  - filter_methods # Throw out filtered methods
+  - auto_container_instantiation
+  - instantiate_containers # Actually instantiate containers
+  - enums # Add enums
+  # Preliminary generation processors:
+  - crystal_wrapper # Create Crystal wrappers
+  - virtual_override # Allow overriding C++ virtual methods
+  - cpp_wrapper # Create C++ <-> C wrappers
+  - crystal_binding # Create `lib` bindings for the C wrapper
+  - sanity_check # Shows issues, if any
+
+containers:
+  - class: godot::Array
+    type: Sequential
+
+class:
+  Array: Godot::Array
+
+enums:
+  Error: Godot::Enum::Error
+
 parser:
   files:
-    - "Array.hpp"
+  - godot_helper.cpp
+  - AABB.hpp
+  - Array.hpp
+  - Basis.hpp
+  - Color.hpp
+  - CoreTypes.hpp
+  - Defs.hpp
+  - Dictionary.hpp
+  - Godot.hpp
+  - GodotGlobal.hpp
+  - GodotProfiling.hpp
+  - NodePath.hpp
+  - Plane.hpp
+  - PoolArrays.hpp
+  - Quat.hpp
+  - RID.hpp
+  - Rect2.hpp
+  - Ref.hpp
+  - String.hpp
+  - TagDB.hpp
+  - Transform.hpp
+  - Transform2D.hpp
+  - Variant.hpp
+  - Vector2.hpp
+  - Vector3.hpp
+  - Wrapped.hpp
   includes:
+    - "%"
+    - "%/godot-cpp/include"
     - "%/godot-cpp/include/core"
     - "%/godot-cpp/include/gen"
+    - "%/godot_headers"
+    - /usr/local/Cellar/llvm@5/5.0.2_1/include/c++/v1
+    - /usr/local/Cellar/llvm@5/5.0.2_1/lib/clang/5.0.2/include
 
 library: "%/ext/godot-cpp/bin/libgodot-cpp.osx.debug.64.a"

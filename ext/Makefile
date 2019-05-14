@@ -1,4 +1,4 @@
-CXXFLAGS := -Wall -Werror -Wno-unused-function -fPIC -fno-rtti -I. -I./godot-cpp/include
+CXXFLAGS := -Wall -Werror -Wno-unused-function -fPIC -I. -I./godot-cpp/include -I./godot-cpp/include/core -I./godot-cpp/include/gen -I./godot_headers
 CPPFILES := godot_binding.cpp
 OBJFILES := $(CPPFILES:.cpp=.o)
 LIBFILE  := godot_binding.a
