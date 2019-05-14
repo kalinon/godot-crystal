@@ -7,3 +7,8 @@ authors:
 crystal: 0.27.2
 
 license: MIT
+
+dependencies:
+  bindgen:
+    github: kalinon/bindgen
+    branch: osx
