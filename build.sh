@@ -5,7 +5,7 @@ root_dir=$(pwd)
 git submodule update --init --recursive
 
 # Generate bindings
-cd godot-cpp
+cd ext/godot-cpp
 scons platform=osx generate_bindings=yes
 
 cd $(root_dir)
