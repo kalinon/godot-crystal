@@ -8,6 +8,12 @@ cd_root() {
   cd ${root_dir}
 }
 
+make_clean() {
+  cd ext
+  make clean
+  cd_root
+}
+
 # Update submodules
 git submodule update --init --recursive
 
@@ -29,6 +35,8 @@ if [ ! -e ./ext/godot-cpp/bin/libgodot-cpp.osx.debug.64.a ]; then
   cd ext/godot-cpp
   scons platform=osx generate_bindings=yes
 fi
+
+make_clean
 
 ./lib/bindgen/bin/bindgen ext/godot.yml
 

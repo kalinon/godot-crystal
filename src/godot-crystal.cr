@@ -1,3 +1,6 @@
+require "ext/*"
+require "godot/*"
+
 # TODO: Write documentation for `Godot::Crystal`
 module Godot::Crystal
   VERSION = "0.1.0"
