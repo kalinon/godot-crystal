@@ -9,56 +9,63 @@ generators:
   #   build: make
 
 classes:
-  Variant: Godot::Variant
-  Color: Godot::Color
-  Vector2: Godot::Vector2
-  Rect2: Godot::Rect2
-  Vector3: Godot::Vector3
-  Plane: Godot::Plane
-  AABB: Godot::AABB
-  Quat: Godot::Quat
-  Basis: Godot::Basis
-  Transform2D: Godot::Transform2D
-  Transform: Godot::Transform
-  NodePath: Godot::NodePath
-  RID: Godot::RID
-  Object: Godot::Object
-  Dictionary: Godot::Dictionary
-  Array: Godot::Array
-  PoolByteArray: Godot::PoolByteArray
-  PoolIntArray: Godot::PoolIntArray
-  PoolRealArray: Godot::PoolRealArray
-  PoolStringArray: Godot::PoolStringArray
-  PoolVector2Array: Godot::PoolVector2Array
-  PoolVector3Array: Godot::PoolVector3Array
-  PoolColorArray: Godot::PoolColorArray
-  Point2: Godot::Point2
-  Size2: Godot::Size2
-  ClockDirection: Godot::ClockDirection
-  Error: Godot::Error
-  Reference: Godot::Reference
-  # "PoolByteArray::Read": Godot::PoolByteArray::Read
-  # "PoolByteArray::Write": Godot::PoolByteArray::Write
-  # "PoolIntArray::Read": Godot::PoolIntArray::Read
-  # "PoolIntArray::Write": Godot::PoolIntArray::Write
-  # "PoolRealArray::Read": Godot::PoolRealArray::Read
-  # "PoolRealArray::Write": Godot::PoolRealArray::Write
-  # "PoolStringArray::Read": Godot::PoolStringArray::Read
-  # "PoolStringArray::Write": Godot::PoolStringArray::Write
-  # "PoolVector2Array::Read": Godot::PoolVector2Array::Read
-  # "PoolVector2Array::Write": Godot::PoolVector2Array::Write
-  # "PoolVector3Array::Read": Godot::PoolVector3Array::Read
-  # "PoolVector3Array::Write": Godot::PoolVector3Array::Write
-  # "PoolColorArray::Read": Godot::PoolColorArray::Read
-  # "PoolColorArray::Write": Godot::PoolColorArray::Write
-
+  Variant: Variant
+  Color: Color
+  Vector2: Vector2
+  Rect2: Rect2
+  Vector3: Vector3
+  Plane: Plane
+  AABB: AABB
+  Quat: Quat
+  Basis: Basis
+  Transform2D: Transform2D
+  Transform: Transform
+  NodePath: NodePath
+  RID: RID
+  Object: GObject
+  Dictionary: Dictionary
+  Array: Array
+  PoolByteArray: PoolByteArray
+  PoolIntArray: PoolIntArray
+  PoolRealArray: PoolRealArray
+  PoolStringArray: PoolStringArray
+  PoolVector2Array: PoolVector2Array
+  PoolVector3Array: PoolVector3Array
+  PoolColorArray: PoolColorArray
+  Point2: Point2
+  Size2: Size2
+  ClockDirection: ClockDirection
+  # Error: GError
+  Reference: Reference
+  Sprite: Sprite
+  Texture: Texture
 
 enums:
-  Error: Godot::Enum::Error
-  "Variant::Type": Godot::Enum::Variant::Type
-  "Variant::Operator": Godot::Enum::Variant::Operator
+  Error: GError
+  "Variant::Type": Enum::Variant::Type
+  "Variant::Operator": Enum::Variant::Operator
 
 types:
+  "signed char":
+    builtin: true
+    crystal_type: Char
+    to_cpp: "signed char(%)"
+    from_cpp: "static_cast<signed char>(%.unicode())"
+    to_crystal: "(%.chr)"
+    from_crystal: "(%.ord)"
+    kind: Struct
+    pass_by: Value
+  wchar_t:
+    builtin: true
+    crystal_type: Char
+    to_cpp: "signed char(%)"
+    from_cpp: "static_cast<wchar_t>(%.unicode())"
+    to_crystal: "(%.chr)"
+    from_crystal: "(%.ord)"
+    kind: Struct
+    pass_by: Value
+  real_t:
+    alias_for: float
   "godot::String":
     converter: Godot::Converter::GdotString
     crystal_type: String
@@ -159,6 +166,12 @@ types:
     ignore: true
   "godot::PoolColorArray::Write":
     ignore: true
+  "godot::Sprite":
+    alias_for: Sprite
+  "godot::Texture":
+    alias_for: Texture
+  "godot::Ref<godot::Texture>":
+    ignore: true
 parser:
   files:
     - godot_helper.cpp
@@ -187,6 +200,7 @@ parser:
     - core/Vector2.hpp
     - core/Vector3.hpp
     - core/Wrapped.hpp
+    - Sprite.hpp
   includes:
     - "%"
     - "%/godot-cpp/include/"

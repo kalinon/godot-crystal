@@ -9,7 +9,7 @@ cd_root() {
 }
 
 make_clean() {
-  cd ext
+  cd ./ext
   make clean
   cd_root
 }
@@ -33,7 +33,8 @@ fi
 # Generate bindings
 if [ ! -e ./ext/godot-cpp/bin/libgodot-cpp.osx.debug.64.a ]; then
   cd ext/godot-cpp
-  scons platform=osx generate_bindings=yes
+  scons platform=osx generate_bindings=yes use_llvm=yes
+  cd_root
 fi
 
 make_clean
