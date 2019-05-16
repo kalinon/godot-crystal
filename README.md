@@ -1,31 +1,13 @@
 # godot-crystal
 
-The goal of this project is to provide Crystal language support as a scripting
-module for the [Godot](http://godotengine.org) game engine.
+The goal of this project is to provide Crystal bindings for the [Godot](http://godotengine.org) game engine.
 
 ## Installation
 
-1. Add the dependency to your `shard.yml`:
+Right now, this lib uses [bindgen](https://github.com/Papierkorb/bindgen) to generate the bindings, so please review
+the requirements for bindgen before use.
 
-   ```yaml
-   dependencies:
-     godot-crystal:
-       github: kalinon/godot-crystal
-   ```
-
-2. Run `shards install`
-
-## Usage
-
-```crystal
-require "godot-crystal"
-```
-
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
+You can run the provided `build.sh` script which should automate the building of the bindings.
 
 ## Contributing
 
