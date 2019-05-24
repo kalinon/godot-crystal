@@ -44,3 +44,4 @@ make_clean
 cd_root
 
 crystal tool format
+crystal docs
