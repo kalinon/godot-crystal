@@ -11,4 +11,4 @@ license: MIT
 dependencies:
   bindgen:
     github: kalinon/bindgen
-    branch: osx
+    branch: cmake

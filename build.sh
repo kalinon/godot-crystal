@@ -19,14 +19,16 @@ git submodule update --init --recursive
 
 # Check bindgen
 if [ ! -e ./lib/bindgen/clang/bindgen ]; then
-  cd ./lib/bindgen/clang/
+  cd ./lib/bindgen
+  cmake .
   make
   cd_root
 fi
 
 if [ ! -e ./lib/bindgen/bin/bindgen ]; then
   ./lib/bindgen
-  shards build
+  cmake .
+  make
   cd_root
 fi
 
